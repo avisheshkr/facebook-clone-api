@@ -19,7 +19,12 @@ mongoose
   .then(() => console.log("Database connected"))
   .catch((err) => console.log(err));
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "5mb" }));
 app.use(helmet());
 app.use(morgan("common"));
